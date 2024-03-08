@@ -2,12 +2,21 @@ package students.items;
 
 public class Apples extends Food {
 	
-	int maturationAge = 3;
-	int deathAge = 5;
-	int monetaryValue = 3;
+	private static int appleGenerationCount = 0;
+	
+	public Apples() {
+		super(3,5,3,"A","a",2);
+		appleGenerationCount ++;
+	}
+	
+	public static int getGenerationCount() {
+		
+		return appleGenerationCount;
+		
+	}
 	
 	@Override
-	public int getGenerationCount() {
-		
+	public String toString() {
+		return "hey there are apples";
 	}
 }

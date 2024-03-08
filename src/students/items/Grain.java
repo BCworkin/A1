@@ -2,12 +2,19 @@ package students.items;
 
 public class Grain extends Food {
 	
-	int maturationAge = 2;
-	int deathAge = 6;
-	int monetaryValue = 2;
+	private static int grainGenerationCount = 0;
+
+	public Grain() {
+		super(2,6,2,"G","g",1);
+	}
 	
-	@Override 
-	public int getGenerationCount() {
+	public static int getGenerationCount() {
 		
+		return grainGenerationCount;
+	}
+	
+	@Override
+	public String toString() {
+		return "hey there are grains.";
 	}
 }
