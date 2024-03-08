@@ -15,6 +15,10 @@ public class Grain extends Food {
 	
 	@Override
 	public String toString() {
-		return "hey there are grains.";
+		if (age < maturationAge) {
+			return beforeMatureSymbol;
+		} else {
+		return afterMatureSymbol;
+		}
 	}
 }

@@ -2,10 +2,10 @@ package students.items;
 
 public abstract class Item {
 	
-	private int age;
-	private int maturationAge;
-	private int deathAge;
-	private int monetaryValue;
+	public int age;
+	public int maturationAge;
+	public int deathAge;
+	public int monetaryValue;
 	
 	public Item(int maturationAge, int deathAge, int monetaryValue) {
 		
