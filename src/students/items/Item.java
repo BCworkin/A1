@@ -39,8 +39,14 @@ public abstract class Item {
 		}
 	}
 	
-	public void equals() {
+	public boolean equals(Object obj) {
 		
+		Item comparingObj = (Item) obj;
+		if (age == comparingObj.age && maturationAge == comparingObj.maturationAge && deathAge == comparingObj.deathAge && monetaryValue == comparingObj.monetaryValue) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public abstract String toString();

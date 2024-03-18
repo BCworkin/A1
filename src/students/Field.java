@@ -23,8 +23,8 @@ public class Field {
 		}
 	}
 	
-	public String get(int x, int y) {
-		return field[x][y].toString();
+	public Object get(int x, int y) {
+		return field[x][y];
 	}
 	
 	public void plant(int x, int y, Item item) {
