@@ -23,6 +23,24 @@ public class Field {
 		}
 	}
 	
+	public void tick() {
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				field[i][j].tick();
+				if (field[i][j].age > field[i][j].deathAge) {
+					field[i][j].died();
+					field[i][j] = new UntilledSoil();
+				}
+				if (field[i][j].monetaryValue == 0) {
+					if(Math.random() < 0.2) {
+						field[i][j] = new Weed();
+					}
+				}
+				}
+			}
+	}
+	
+	
 	public Object get(int x, int y) {
 		return field[x][y];
 	}
