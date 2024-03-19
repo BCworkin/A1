@@ -36,8 +36,8 @@ public class Field {
 						field[i][j] = new Weed();
 					}
 				}
-				}
 			}
+		}
 	}
 	
 	
