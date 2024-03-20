@@ -8,6 +8,9 @@ public class Field {
 	private int width;
 	private Item[][] field;
 	private int totalValue;
+	private int weedCount;
+	private int untilledSoilCount;
+	private int soilCount;
 	
 	public Field(int height, int width) {
 		
@@ -79,4 +82,38 @@ public class Field {
 	    }
 	    return fieldDisplay.toString();
 	}
+	
+	public String getSummary() {
+				
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				if (field[i][j] instanceof Weed) {
+					weedCount++;
+				} else if (field[i][j] instanceof UntilledSoil) {
+					untilledSoilCount++;
+				} else {
+					soilCount++;
+				}
+			}
+		}
+		StringBuilder summary = new StringBuilder();
+		summary.append("Apples:        " + Apples.getGenerationCount());
+		summary.append("\n");
+		summary.append("Grains:        " + Grain.getGenerationCount());
+		summary.append("\n");
+		summary.append("Soil:          " + soilCount);
+		summary.append("\n");
+		summary.append("Untilled:      " + untilledSoilCount);
+		summary.append("\n");
+		summary.append("Weed:          " + weedCount);
+		summary.append("\n");
+		summary.append("For a total off $" + getValue());
+		summary.append("\n");
+		summary.append("Total apples created: " + Apples.getGenerationCount());
+		summary.append("\n");
+		summary.append("Total grain created:  " + Grain.getGenerationCount());
+		summary.append("\n");
+		return summary.toString();
+	}
 }
+
