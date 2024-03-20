@@ -1,5 +1,8 @@
 package students;
 
+import students.*;
+
+
 public class Farm {
 	
 	private int fieldWidth;
@@ -15,7 +18,9 @@ public class Farm {
 	
 	public void run()
 	{
-		
+		Field actualField = new Field(fieldWidth, fieldHeight);
+		System.out.println(actualField);
+		System.out.println("Bank balance: $" + startingFunds);
 	}
 	
 }

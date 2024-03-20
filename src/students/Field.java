@@ -12,23 +12,23 @@ public class Field {
 	private int untilledSoilCount;
 	private int soilCount;
 	
-	public Field(int height, int width) {
+	public Field(int width, int height) {
 		
-		this.height = height;
 		this.width = width;
-		this.field = new Item[height][width];
+		this.height = height;
+		this.field = new Item[width][height];
 		this.totalValue = 0;
 		
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
 				field[i][j] = new Soil();
 			}
 		}
 	}
 	
 	public void tick() {
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
 				field[i][j].tick();
 				if (field[i][j].age > field[i][j].deathAge) {
 					field[i][j].died();
