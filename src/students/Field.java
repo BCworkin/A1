@@ -49,7 +49,12 @@ public class Field {
 	}
 	
 	public void plant(int x, int y, Item item) {
+		
 		field[x][y] = item;
+		if (item instanceof Food) {
+			Food foodItem = (Food) item;
+			String symbol = foodItem.beforeMatureSymbol;
+		}
 	}
 	
 	public void till(int x, int y) {
