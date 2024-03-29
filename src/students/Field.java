@@ -44,6 +44,10 @@ public class Field {
 		}
 	}
 	
+	public void harvest(int x, int y) {
+		field[x][y] = new Soil();
+	}
+	  
 	
 	public Object get(int x, int y) {
 		return field[x][y];
@@ -55,7 +59,7 @@ public class Field {
 	        Food foodItem = (Food) item;
 	        field[x][y] = foodItem;
 	        }
-		} 
+		}
 	
 	public void till(int x, int y) {
 		field[x][y] = new Soil();

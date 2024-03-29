@@ -56,6 +56,10 @@ public class Farm {
 	                }
 	                actualField.tick();
 	                break;
+	            case "h":
+	            	startingFunds += actualField.getValue();
+	            	actualField.harvest(x, y);
+	            	actualField.tick();
 	            case "w":
 	            	actualField.tick();
 	            	break;
