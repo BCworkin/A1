@@ -36,8 +36,8 @@ public class Farm {
 	        System.out.println("  w: wait");
 	        System.out.println("  q: quit");
 	        String choice = s.next();
-            int x = s.nextInt();
-            int y = s.nextInt();
+            int x = s.nextInt() - 1;
+            int y = s.nextInt() - 1;
 
 	        switch (choice) {
 	            case "t":

@@ -53,7 +53,7 @@ public class Field {
 		return field[x][y];
 	}
 	
-	public void plant(int x, int y, Item item) {
+	public void plant( int x, int y , Item item) {
 				
 		if (item instanceof Food) {
 	        Food foodItem = (Food) item;
