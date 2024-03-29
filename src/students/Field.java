@@ -30,14 +30,15 @@ public class Field {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				field[i][j].tick();
-				if (field[i][j].age > field[i][j].deathAge) {
-					field[i][j].died();
-					field[i][j] = new UntilledSoil();
-				}
-				if (field[i][j].monetaryValue == 0) {
-					if(Math.random() < 0.2) {
-						field[i][j] = new Weed();
-					}
+				if (field[i][j] instanceof Soil && field[i][j].monetaryValue == 0) {
+	                if(Math.random() < 0.2) {
+	                    field[i][j] = new Weed();
+	                } else {
+	                	field[i][j] = new Soil();
+	                }
+				}    else if (field[i][j].age > field[i][j].deathAge) {
+						field[i][j].died();
+						field[i][j] = new UntilledSoil();
 				}
 			}
 		}
@@ -49,13 +50,12 @@ public class Field {
 	}
 	
 	public void plant(int x, int y, Item item) {
-		
-		field[x][y] = item;
+				
 		if (item instanceof Food) {
-			Food foodItem = (Food) item;
-			String symbol = foodItem.beforeMatureSymbol;
-		}
-	}
+	        Food foodItem = (Food) item;
+	        field[x][y] = foodItem;
+	        }
+		} 
 	
 	public void till(int x, int y) {
 		field[x][y] = new Soil();

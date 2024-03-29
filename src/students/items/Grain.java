@@ -11,14 +11,6 @@ public class Grain extends Food {
 	public static int getGenerationCount() {
 		
 		return grainGenerationCount;
-	}
-	
-	@Override
-	public String toString() {
-		if (age < maturationAge) {
-			return beforeMatureSymbol;
-		} else {
-		return afterMatureSymbol;
-		}
+
 	}
 }

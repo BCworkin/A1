@@ -21,40 +21,51 @@ public class Farm {
 	public void run()
 	{
 		Scanner s = new Scanner(System.in);
-		Field actualField = new Field(fieldWidth, fieldHeight);
-		System.out.println(actualField);
-		System.out.println("Bank balance: $" + startingFunds);
-		System.out.println("\n");
-		System.out.println("Enter your next action: ");
-		System.out.println("  t x y: till");
-		System.out.println("  h x y: harvest");
-		System.out.println("  p x y: plant");
-		System.out.println("  s: field summary");
-		System.out.println("  w: wait");
-		System.out.println("  q: quit");
-		String choice = s.next();
-		int x = s.nextInt();
-		int y = s.nextInt();
-		if (choice.equals("t")) {
-			System.out.println("Hi");
-			actualField.till(x, y);
-		    actualField.tick();
-		    run();
-		} else if (choice.equals("p")) {
-			Scanner sFood = new Scanner(System.in);
-			System.out.println("Enter: ");
-			System.out.println("- 'a' to buy an apple for $2");
-		    System.out.println("- 'g' to buy grain for $1");
-		    String foodChoice = sFood.next();
-		    if (foodChoice.equals("a")) {
-		    	actualField.plant(x, y, new Apples());
-		    } else if (foodChoice.equals("g")) {
-		    	actualField.plant(x, y, new Grain());
-		    }
-		    actualField.tick();
-		    run();
-		} 
-		
+		boolean continueProgram = true;
+	    Field actualField = new Field(fieldWidth, fieldHeight);
+
+		while (continueProgram) {
+	        System.out.println(actualField);
+	        System.out.println("Bank balance: $" + startingFunds);
+	        System.out.println("\n");
+	        System.out.println("Enter your next action: ");
+	        System.out.println("  t x y: till");
+	        System.out.println("  h x y: harvest");
+	        System.out.println("  p x y: plant");
+	        System.out.println("  s: field summary");
+	        System.out.println("  w: wait");
+	        System.out.println("  q: quit");
+	        String choice = s.next();
+            int x = s.nextInt();
+            int y = s.nextInt();
+
+	        switch (choice) {
+	            case "t":
+	                actualField.till(x, y);
+	                actualField.tick();
+	                break;
+	            case "p":
+	                System.out.println("Enter: ");
+	                System.out.println("- 'a' to buy an apple for $2");
+	                System.out.println("- 'g' to buy grain for $1");
+	                String foodChoice = s.next();
+	                if (foodChoice.equals("a")) {
+	                    actualField.plant(x, y, new Apples());
+	                } else if (foodChoice.equals("g")) {
+	                    actualField.plant(x, y, new Grain());
+	                }
+	                actualField.tick();
+	                break;
+	            case "w":
+	            	actualField.tick();
+	            	break;
+	            case "q":
+	                continueProgram = false; 
+	                break;
+	            default:
+	                System.out.println("Invalid choice. Please try again.");
+	        }
+	    }
+		    s.close(); 
 	}
-	
 }

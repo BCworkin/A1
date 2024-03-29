@@ -31,11 +31,11 @@ public class Marker {
 //
 //		System.out.println(new Weed()); // should print "#"
 //		System.out.println(new UntilledSoil()); // should print "/"
-
-		// Section TWO
-		// uncomment this section once you get to it
-		
-
+//
+//		// Section TWO
+//		// uncomment this section once you get to it
+//		
+//
 //		Field testField = new Field(5, 5);
 //		System.out.println(testField.get(3, 3)); //should print "."
 //		System.out.println(testField); //should print the field

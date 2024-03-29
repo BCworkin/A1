@@ -12,5 +12,13 @@ public abstract class Food extends Item {
 		this.beforeMatureSymbol = beforeMatureSymbol;
 		this.costToBuy = costToBuy;
 	}
-
+	
+	@Override
+	public String toString() {
+		if (age < maturationAge) {
+			return beforeMatureSymbol;
+		} else {
+		return afterMatureSymbol;
+		}
+	}
 }

@@ -15,12 +15,4 @@ public class Apples extends Food {
 		
 	}
 	
-	@Override
-	public String toString() {
-		if (age < maturationAge) {
-			return beforeMatureSymbol;
-		} else {
-		return afterMatureSymbol;
-		}
-	}
 }
