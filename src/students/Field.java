@@ -11,6 +11,8 @@ public class Field {
 	private int weedCount;
 	private int untilledSoilCount;
 	private int soilCount;
+	private int applesCount;
+	private int grainCount;
 	
 	public Field(int width, int height) {
 		
@@ -44,8 +46,17 @@ public class Field {
 		}
 	}
 	
-	public void harvest(int x, int y) {
+	public int harvest(int x, int y) {
+		int soldPrice = field[x][y].monetaryValue;	
+		if (field[x][y] instanceof Apples) {
+			applesCount --;
+			System.out.println("Sold 'A' for 3");
+		} else if (field[x][y] instanceof Grain) {
+			grainCount --;		
+			System.out.println("Sold 'G' for 2");
+		}
 		field[x][y] = new Soil();
+		return soldPrice;
 	}
 	  
 	
@@ -66,6 +77,8 @@ public class Field {
 	}
 	
 	public int getValue() {
+		
+		totalValue = 0;
 		
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
@@ -92,7 +105,13 @@ public class Field {
 	    return fieldDisplay.toString();
 	}
 	
-	public String getSummary() {
+	public void getSummary() {
+		
+		applesCount = 0;
+		grainCount = 0;
+		weedCount = 0;
+		untilledSoilCount = 0;
+		soilCount = 0;
 				
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
@@ -100,15 +119,19 @@ public class Field {
 					weedCount++;
 				} else if (field[i][j] instanceof UntilledSoil) {
 					untilledSoilCount++;
+				} else if (field[i][j] instanceof Apples) {
+					applesCount++;
+				} else if (field[i][j] instanceof Grain) {
+					grainCount++;
 				} else {
 					soilCount++;
 				}
 			}
 		}
 		StringBuilder summary = new StringBuilder();
-		summary.append("Apples:        " + Apples.getGenerationCount());
+		summary.append("Apples:        " + applesCount);
 		summary.append("\n");
-		summary.append("Grains:        " + Grain.getGenerationCount());
+		summary.append("Grains:        " + grainCount);
 		summary.append("\n");
 		summary.append("Soil:          " + soilCount);
 		summary.append("\n");
@@ -122,7 +145,7 @@ public class Field {
 		summary.append("\n");
 		summary.append("Total grain created:  " + Grain.getGenerationCount());
 		summary.append("\n");
-		return summary.toString();
+		System.out.println(summary);
 	}
 }
 

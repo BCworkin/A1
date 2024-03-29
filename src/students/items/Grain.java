@@ -5,7 +5,8 @@ public class Grain extends Food {
 	private static int grainGenerationCount = 0;
 
 	public Grain() {
-		super(2,6,2,"G","g",1);
+		super(2,6,2,"G","g",1);		
+		grainGenerationCount++;
 	}
 	
 	public static int getGenerationCount() {
