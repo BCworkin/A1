@@ -66,7 +66,10 @@ public class Field {
 	
 	public void plant( int x, int y , Item item) {
 				
-		if (item instanceof Food) {
+	    if (field[x][y] instanceof Weed) {
+	    	System.out.println("Can't plant on these annoying weeds my friend. Look carefully next time. :(");
+	    	System.out.println("\n");
+	    } else if (item instanceof Food) {
 	        Food foodItem = (Food) item;
 	        field[x][y] = foodItem;
 	        }

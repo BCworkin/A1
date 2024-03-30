@@ -53,12 +53,16 @@ public class Farm {
 			                System.out.println("- 'a' to buy an apple for $2");
 			                System.out.println("- 'g' to buy grain for $1");
 			                String foodChoice = s.next();
-			                if (foodChoice.equals("a")) {
-			                	startingFunds -= 2;
-			                    actualField.plant(x, y, new Apples());
-			                } else if (foodChoice.equals("g")) {
-			                	startingFunds -= 1;
-			                    actualField.plant(x, y, new Grain());
+			                if (foodChoice.equals("a") && startingFunds >= 2) {
+			                	Apples a = new Apples();
+			                	startingFunds -= a.costToBuy;
+			                    actualField.plant(x, y, a);
+			                } else if (foodChoice.equals("g") && startingFunds >= 1) {
+			                	Grain g = new Grain();
+			                	startingFunds -= g.costToBuy;
+			                    actualField.plant(x, y, g);
+			                } else {
+			                	System.out.println("You do not have enough money to make purchase.");
 			                }
 			                break;
 			            case "h":
