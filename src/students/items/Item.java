@@ -13,7 +13,7 @@ public abstract class Item {
 		this.maturationAge = maturationAge;
 		this.deathAge = deathAge;
 		this.monetaryValue = monetaryValue;
-		
+		 
 	}
 
 	public void tick() {

@@ -1,6 +1,5 @@
 package students;
 
-import students.*;
 import students.items.*;
 import java.util.Scanner;
 
@@ -32,6 +31,7 @@ public class Farm {
 	        System.out.println("  t x y: till");
 	        System.out.println("  h x y: harvest");
 	        System.out.println("  p x y: plant");
+	        System.out.println("  r x y: release");
 	        System.out.println("  s: field summary");
 	        System.out.println("  w: wait");
 	        System.out.println("  q: quit");
@@ -41,6 +41,7 @@ public class Farm {
 		        case "t":
 		        case "h":
 		        case "p":
+		        case "r":
 		        	int x = s.nextInt() - 1;
 		        	int y = s.nextInt() - 1;
 
@@ -65,6 +66,20 @@ public class Farm {
 			                	System.out.println("You do not have enough money to make purchase.");
 			                }
 			                break;
+			            //cow release
+			            case "r":
+			            	System.out.println("Enter: ");
+			                System.out.println("- 'm' to buy a cow for $8");
+			                String animalChoice = s.next();
+			                if (animalChoice.equals("m") && startingFunds >= 8) {
+			                	Cow m = new Cow();
+			                	startingFunds -= m.costToBuy;
+			                    actualField.release(x, y, m);
+			                } else {
+			                	System.out.println("You do not have enough money to make purchase.");
+			                	System.out.println("\n");
+			                }
+			                    break;
 			            case "h":
 			                startingFunds += actualField.harvest(x, y);
 			                break;

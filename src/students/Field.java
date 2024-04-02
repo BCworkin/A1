@@ -1,5 +1,7 @@
 package students;
 
+import java.util.Random;
+
 import students.items.*;
 
 public class Field {
@@ -13,6 +15,8 @@ public class Field {
 	private int soilCount;
 	private int applesCount;
 	private int grainCount;
+	//cow changes
+	private int cowCount;
 	
 	public Field(int width, int height) {
 		
@@ -38,10 +42,13 @@ public class Field {
 	                } else {
 	                	field[i][j] = new Soil();
 	                }
-				}    else if (field[i][j].age > field[i][j].deathAge) {
-						field[i][j].died();
-						field[i][j] = new UntilledSoil();
-				}
+				} else if (field[i][j].age > field[i][j].deathAge) {
+					field[i][j].died();
+					field[i][j] = new UntilledSoil();
+				} 
+//				else if (field[i][j] instanceof Cow) {
+//					move(i, j);
+//				}
 			}
 		}
 	}
@@ -54,11 +61,13 @@ public class Field {
 		} else if (field[x][y] instanceof Grain) {
 			grainCount --;		
 			System.out.println("Sold 'G' for 2");
+		} else if (field[x][y] instanceof Cow) {
+			cowCount--;
+			System.out.println("Sold 'M' for 13");
 		}
 		field[x][y] = new Soil();
 		return soldPrice;
 	}
-	  
 	
 	public Object get(int x, int y) {
 		return field[x][y];
@@ -69,7 +78,16 @@ public class Field {
 	    if (field[x][y] instanceof Weed) {
 	    	System.out.println("Can't plant on these annoying weeds my friend. Look carefully next time. :(");
 	    	System.out.println("\n");
-	    } else if (item instanceof Food) {
+	    } else if (field[x][y] instanceof UntilledSoil) {
+	    	System.out.println("Can't plant on untilled soil my friend. Start tilling. :(");
+	    	System.out.println("\n");
+	    } else if (field[x][y] instanceof Cow) {
+	    	System.out.println("MOOOOO! Don't plant on the cow!");
+	    	System.out.println("\n");
+	    } else if (field[x][y] instanceof Apples || field[x][y] instanceof Grain) {
+	    	System.out.println("Can't plant on produce, plant elsewhere.");
+	    	System.out.println("\n");
+	    } else if (item instanceof Apples || item instanceof Grain) {
 	        Food foodItem = (Food) item;
 	        field[x][y] = foodItem;
 	        }
@@ -91,6 +109,34 @@ public class Field {
 		return totalValue;
 	}
 	
+	//to release the cow to the farm
+	public void release(int x, int y, Item item) {
+		
+		 if (item instanceof Cow && field[x][y] instanceof Weed || field[x][y] instanceof Apples || field[x][y] instanceof Grain) {
+			eat();
+		 } 
+		 Food farmAnimal = (Food) item;
+		 field[x][y] = farmAnimal;
+		 System.out.println("Moo!");
+	}
+	
+	//For cow to move around the farm
+	public void move(int x, int y) {
+
+		Random random = new Random();
+		int directionX = random.nextInt(width);
+		int directionY = random.nextInt(height);		
+		field[x][y] = field[directionX][directionY];
+	}
+	
+	// to show cow ate
+	public void eat() {
+    	System.out.println("Moo! Munch!");
+    	System.out.println("\n");
+	}
+	
+	
+	//to print map of farm
 	public String toString() {
 		StringBuilder fieldDisplay = new StringBuilder();
 		fieldDisplay.append("  ");
@@ -136,6 +182,8 @@ public class Field {
 		summary.append("\n");
 		summary.append("Grains:        " + grainCount);
 		summary.append("\n");
+		summary.append("Cows:        " + cowCount);
+		summary.append("\n");
 		summary.append("Soil:          " + soilCount);
 		summary.append("\n");
 		summary.append("Untilled:      " + untilledSoilCount);
@@ -147,6 +195,8 @@ public class Field {
 		summary.append("Total apples created: " + Apples.getGenerationCount());
 		summary.append("\n");
 		summary.append("Total grain created:  " + Grain.getGenerationCount());
+		summary.append("\n");
+		summary.append("Total cows created:  " + Cow.getGenerationCount());
 		summary.append("\n");
 		System.out.println(summary);
 	}

@@ -11,7 +11,7 @@ public abstract class Food extends Item {
 		this.afterMatureSymbol = afterMatureSymbol;
 		this.beforeMatureSymbol = beforeMatureSymbol;
 		this.costToBuy = costToBuy;
-	}
+	} 
 	
 	@Override
 	public String toString() {
