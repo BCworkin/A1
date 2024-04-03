@@ -1,7 +1,5 @@
 package students;
 
-import java.util.Random;
-
 import students.items.*;
 
 public class Field {
@@ -98,14 +96,18 @@ public class Field {
 		if (field[x][y] instanceof Apples) {
 			applesCount --;
 			System.out.println("Sold 'A' for 3");
+			field[x][y] = new Soil();
 		} else if (field[x][y] instanceof Grain) {
 			grainCount --;		
 			System.out.println("Sold 'G' for 2");
+			field[x][y] = new Soil();
 		} else if (field[x][y] instanceof Chomper) {
 			chomperCount --;		
 			System.out.println("Sold 'C' for 8");
+			field[x][y] = new Soil();
+		} else {
+			System.out.println("There's nothing to harvest.");
 		}
-		field[x][y] = new Soil();
 		return soldPrice;
 	}
 	
