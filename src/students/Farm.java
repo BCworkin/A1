@@ -23,6 +23,7 @@ public class Farm {
 	public void run()
 	{
 		Scanner s = new Scanner(System.in);
+		// becomes false when user decides to end the game
 		boolean continueProgram = true;
 	    Field actualField = new Field(fieldWidth, fieldHeight);
 	    
@@ -42,6 +43,7 @@ public class Farm {
 		        System.out.println("\n");
 		        String choice = s.next();
 		        switch (choice) {
+		        // cases that take in coordinates
 		        case "t":
 		        case "h":
 		        case "p":
@@ -90,6 +92,7 @@ public class Farm {
 		                System.out.println("Numbers given has exceeded the index for the given map.");
 		            }
 		            break;
+		        //cases that do not require coordinates
 		        case "s":
 		            actualField.getSummary();
 		            break;

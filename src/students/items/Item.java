@@ -49,6 +49,7 @@ public abstract class Item {
 		}
 	}
 	
+	// abstract method that will be inherited by child classes
 	public abstract String toString();
 }
 

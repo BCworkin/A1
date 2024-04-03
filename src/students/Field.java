@@ -59,15 +59,16 @@ public class Field {
 				if (field[i][j] instanceof Apples || field[i][j] instanceof Grain || field[i][j] instanceof Chomper) {
 					// bird targeted produce will show a symbol
 	                if(Math.random() < 0.5) {
-	                	// Store the original produce before replacing it
+	                	// store the original produce before replacing it
 	                    originalItem[i][j] = field[i][j];
 	                    
-	                    // Replace the produce with a BirdTargetedSpot
+	                    // replace the produce with a BirdTargetedSpot
 	                    field[i][j] = new BirdTargetedSpot();
 	                }
 					//bird successfully stole produce
 				} else if (field[i][j] instanceof BirdTargetedSpot) {
 					if (originalItem[i][j] instanceof Chomper) {
+						//uses the instance of the previously created chomper to eat the bird
 						Chomper c = (Chomper) originalItem[i][j];
 						c.eatBird();
 				        field[i][j] = c;
@@ -82,8 +83,9 @@ public class Field {
 		}
 	}
 	
+	// will be called when user wants to chase bird away from stealing produce
 	public void chase(int x, int y) {
-	    // Check if the spot contains a BirdTargetedSpot and restore the original produce
+	    // checks if the spot contains a BirdTargetedSpot and restore the original produce
 	    if (field[x][y] instanceof BirdTargetedSpot) {
 	        System.out.println("Bird chased away at " + x + "," + y +". SHOOOOOOOO");
 	        System.out.println("\n");
@@ -92,6 +94,8 @@ public class Field {
 	}
 	
 	public int harvest(int x, int y) {
+		
+		// soldPrice will be the worth of that specific produce
 		int soldPrice = field[x][y].monetaryValue;	
 		if (field[x][y] instanceof Apples) {
 			applesCount --;
@@ -112,6 +116,7 @@ public class Field {
 	}
 	
 	public Object get(int x, int y) {
+		
 		return field[x][y];
 	}
 	
@@ -135,10 +140,13 @@ public class Field {
 	        }
 		}
 	
+	// just to till soil 
 	public void till(int x, int y) {
+		
 		field[x][y] = new Soil();
 	}
 	
+	//getValue of the field 
 	public int getValue() {
 		
 		totalValue = 0;
@@ -151,78 +159,9 @@ public class Field {
 		return totalValue;
 	}
 	
-//	//to release the cow to the farm
-//	public void release(Item item) {
-//		
-//		Food farmAnimal = (Food) item;
-//		Random random = new Random ();
-//		int x = random.nextInt(width);
-//		int y = random.nextInt(height);
-//		if (field[x][y] instanceof Weed) {
-//			field[x][y] = farmAnimal;
-//			weedCount--;
-//		} else if (field[x][y] instanceof Apples) {
-//			field[x][y] = farmAnimal;
-//			applesCount--;
-//		} else if (field[x][y] instanceof Grain) {
-//			field[x][y] = farmAnimal;
-//			grainCount--;
-//		} else if (field[x][y] instanceof Soil) {
-//			field[x][y] = farmAnimal;
-//			soilCount--;
-//		} else if (field[x][y] instanceof UntilledSoil) {
-//			field[x][y] = farmAnimal;
-//			untilledSoilCount--;
-//		}
-//	}
-//	
-//	//For cow to move around the farm
-//	public void move(int x, int y) {
-//		
-//        Cow cow = (Cow) field[x][y];
-//        
-//
-//		int direction = (int) (Math.random() * 4);
-//
-//        int newX = x;
-//        int newY = y;
-//        switch (direction) {
-//            case 0:
-//                newX = Math.max(0, x - 1);
-//                break;
-//            case 1:
-//                newX = Math.min(width - 1, x + 1);
-//                break;
-//            case 2:
-//                newY = Math.max(0, y - 1);
-//                break;
-//            case 3:
-//                newY = Math.min(height - 1, y + 1);
-//                break;
-//        }
-//        if (field[newX][newY] instanceof Weed) {
-//			field[x][y] = cow;
-//			weedCount--;
-//		} else if (field[newX][newY] instanceof Apples) {
-//			field[x][y] = cow;
-//			applesCount--;
-//		} else if (field[newX][newY] instanceof Grain) {
-//			field[x][y] = cow;
-//			grainCount--;
-//		} else if (field[newX][newY] instanceof Soil) {
-//			field[x][y] = cow;
-//			soilCount--;
-//		} else if (field[newX][newY] instanceof UntilledSoil) {
-//			field[x][y] = cow;
-//			untilledSoilCount--;
-//		}
-//        field[newX][newY] = cow; 
-//        field[x][y] = new Soil();
-//        System.out.println("popop");
-//    }
-//	
 	//to print map of farm
 	public String toString() {
+		
 		StringBuilder fieldDisplay = new StringBuilder();
 		fieldDisplay.append("  ");
 	    for (int i = 0; i < width; i++) {
@@ -239,6 +178,7 @@ public class Field {
 	    return fieldDisplay.toString();
 	}
 	
+	// get summary of the game so far
 	public void getSummary() {
 		
 		applesCount = 0;
@@ -265,6 +205,7 @@ public class Field {
 				}
 			}
 		}
+		//string builder to connect all the statistics
 		StringBuilder summary = new StringBuilder();
 		summary.append("Apples:        " + applesCount);
 		summary.append("\n");
