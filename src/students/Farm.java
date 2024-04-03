@@ -37,6 +37,7 @@ public class Farm {
 	        System.out.println("  t x y: till");
 	        System.out.println("  h x y: harvest");
 	        System.out.println("  p x y: plant");
+	        System.out.println("  c x y: chase bird away");
 	        System.out.println("  s: field summary");
 	        System.out.println("  w: wait");
 	        System.out.println("  q: quit");
@@ -46,6 +47,7 @@ public class Farm {
 	        case "t":
 	        case "h":
 	        case "p":
+	        case "c":
 	            int x = s.nextInt() - 1;
 	            int y = s.nextInt() - 1;
 	            if (x >= 0 && x < fieldWidth && y >= 0 && y < fieldHeight) {
@@ -57,6 +59,7 @@ public class Farm {
 	                        System.out.println("Enter: ");
 	                        System.out.println("- 'a' to buy an apple for $2");
 	                        System.out.println("- 'g' to buy grain for $1");
+	                        System.out.println("- 'c' to buy chomper for $6");
 	                        String foodChoice = s.next();
 	                        if (foodChoice.equals("a") && startingFunds >= 2) {
 	                            Apples a = new Apples();
@@ -66,12 +69,19 @@ public class Farm {
 	                            Grain g = new Grain();
 	                            startingFunds -= g.costToBuy;
 	                            actualField.plant(x, y, g);
+	                        } else if (foodChoice.equals("c") && startingFunds >= 8) {
+	                            Chomper c = new Chomper();
+	                            startingFunds -= c.costToBuy;
+	                            actualField.plant(x, y, c);
 	                        } else {
 	                            System.out.println("You do not have enough money to make purchase.");
 	                        }
 	                        break;
 	                    case "h":
 	                        startingFunds += actualField.harvest(x, y);
+	                        break;
+	                    case "c":
+	                        actualField.chase(x, y);
 	                        break;
 	                }
 	            } else {
